@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Button,TextField } from '@material-ui/core';
-// import PersonSharpIcon from '@material-ui/icons/PersonSharp';
-import EmailIcon from '@material-ui/icons/Email';
+import PersonSharpIcon from '@material-ui/icons/PersonSharp';
 import LockIcon from '@material-ui/icons/Lock';
-import './login.css'
+import EmailIcon from '@material-ui/icons/Email';
+import CallIcon from '@material-ui/icons/Call';
+import './Signup.css'
 
-class Login extends Component {
+class Signup extends Component {
     constructor()
     {
         super();
@@ -37,9 +38,16 @@ class Login extends Component {
     render() {
         return (
         <div>
-            <div className="login-form">
-                <h1 style={{color:'blue'}}>Login</h1>
+            <div className="signup-form">
+                <h1 style={{color:'blue'}}>SingUp</h1>
                 <form noValidate autoComplete="off">
+                    <label ><CallIcon className="MuiSvgIcon-root1"/></label>
+                    <TextField id="mobile" type="text" onChange={(event)=>{this.setState({email:event.target.value})}} label="Mobile" />
+                    <br /><br />
+                    <label ><PersonSharpIcon className="MuiSvgIcon-root1"/></label>
+                    <TextField id="username" type="text" onChange={(event)=>{this.setState({email:event.target.value})}} label="Username" />
+                    <br /><br />
+                    
                     <label ><EmailIcon className="MuiSvgIcon-root1"/></label>
                     <TextField id="email" type="email" onChange={(event)=>{this.setState({email:event.target.value})}} label="Email" />
                     <br /><br />
@@ -47,7 +55,7 @@ class Login extends Component {
                     </label><TextField id="password" type="password" onChange={(event)=>{this.setState({password:event.target.value})}} label="Password" />
                     <br /><br />
                     <br />
-                    <Button variant="contained" color="primary" onClick={()=>{this.login()}}>Login</Button>
+                    <Button variant="contained" color="primary" onClick={()=>{this.login()}}>SignUp</Button>
                 </form>
             </div>
         </div>
@@ -55,4 +63,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Signup;
