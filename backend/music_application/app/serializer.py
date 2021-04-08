@@ -20,7 +20,10 @@ class CreateUserSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user_obj = User(
             username=data.get('username'),
-            email=data.get('email')
+            email=data.get('email'),
+            phone=data.get('phone'),
+            city=data.get('city'),
+            profile_pic=data.get('profile_pic')
         )
         user_obj.set_password(data.get('password'))
         user_obj.is_active = True

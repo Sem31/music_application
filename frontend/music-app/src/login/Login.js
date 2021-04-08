@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Button,TextField } from '@material-ui/core';
 // import PersonSharpIcon from '@material-ui/icons/PersonSharp';
-import EmailIcon from '@material-ui/icons/Email';
+// import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
+import CallIcon from '@material-ui/icons/Call';
 import './login.css'
 
 class Login extends Component {
@@ -10,9 +11,10 @@ class Login extends Component {
     {
         super();
         this.state = {
-            email:'',
+            username:'',
             password:'',
         }
+        this.error=''
     }
     login()
     {
@@ -22,7 +24,7 @@ class Login extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(this.state)
         };
-        fetch('http://127.0.0.1:8000/api/login/', requestOptions)
+        fetch('http://127.0.0.1:8000/login_user/', requestOptions)
             .then(async response => {
                 const data = await response.json();
                 console.log(data)
@@ -30,7 +32,7 @@ class Login extends Component {
                     alert("successfull Login")
                 }
                 else{
-                    alert(data['non_field_errors'][0])
+                    this.error = "username errro"
                 }
             })
     }
@@ -39,15 +41,15 @@ class Login extends Component {
         <div>
             <div className="login-form">
                 <h1 style={{color:'blue'}}>Login</h1>
-                <form noValidate autoComplete="off">
-                    <label ><EmailIcon className="MuiSvgIcon-root1"/></label>
-                    <TextField id="email" type="email" onChange={(event)=>{this.setState({email:event.target.value})}} label="Email" />
+                <form noValidate autoComplete="off" onClick={()=>{this.login()}}>
+                    <label ><CallIcon className="MuiSvgIcon-root1"/></label>
+                    <TextField id="username" type="text" onChange={(event)=>{this.setState({username:event.target.value})}} label="Username" />
                     <br /><br />
                     <label ><LockIcon  className="MuiSvgIcon-root1" />
                     </label><TextField id="password" type="password" onChange={(event)=>{this.setState({password:event.target.value})}} label="Password" />
                     <br /><br />
                     <br />
-                    <Button variant="contained" color="primary" onClick={()=>{this.login()}}>Login</Button>
+                    <Button variant="contained" color="primary">Login</Button>
                 </form>
             </div>
         </div>
